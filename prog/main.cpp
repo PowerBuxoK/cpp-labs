@@ -4,9 +4,9 @@
 typedef uint16_t PipGirl_state_t;
 
 constexpr const int PIPGIRL_STATE_COUNT = 5;
-constexpr const PipGirl_state_t PIPGIRL_SANITAZATION_MASK = ~(-1 >> PIPGIRL_STATE_COUNT << PIPGIRL_STATE_COUNT);
+constexpr const PipGirl_state_t PIPGIRL_SANITAZATION_MASK = ~((PipGirl_state_t)-1 >> PIPGIRL_STATE_COUNT << PIPGIRL_STATE_COUNT);
 
-enum class PipGirl_states : u_int16_t
+enum class PipGirl_states : uint16_t
 {
     Invisibility = 0b0000'0000'0000'0001,
     Silence = 0b0000'0000'0000'0010,
