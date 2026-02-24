@@ -1,123 +1,90 @@
-#include <iostream>
+#include "LongInt.h"
 #include <cinttypes>
+#include <cstdint>
+#include <iostream>
 
-typedef uint16_t PipGirl_state_t;
-
-constexpr const int PIPGIRL_STATE_COUNT = 5;
-constexpr const PipGirl_state_t PIPGIRL_SANITAZATION_MASK = ~(-1 >> PIPGIRL_STATE_COUNT << PIPGIRL_STATE_COUNT);
-
-enum class PipGirl_states : u_int16_t
+void PrintHelp(char* argv[])
 {
-    Invisibility = 0b0000'0000'0000'0001,
-    Silence = 0b0000'0000'0000'0010,
-    IRAbsorbption = 0b0000'0000'0000'0100,
-    RFAbsorbption = 0b0000'0000'0000'1000,
-    PotatoEnergyMode = 0b0000'0000'0001'0000,
-};
+  std::cout << "Program usage: \n"
+            << argv[0] << R"( [task]
 
-// Is used to cut trash bits
-PipGirl_state_t SanitateState(PipGirl_state_t state)
-{
-    return state & PIPGIRL_SANITAZATION_MASK;
+Tasks:
+1: factorial
+2: 2^number
+3: 2^n1 + 2^n2
+4: 2^n1 - 2^n2
+5: fibonacci)"
+            << std::endl;
 }
 
-/**
- * @brief Inverts module's state
- *
- * @param state Suit state
- * 
- * @param to_get Module id to toggle
- *
- * @return bool
- */
-void InvertState(PipGirl_state_t &state, int to_invert)
+void Task1()
 {
-    state ^= (1 << to_invert);
-    state = SanitateState(state);
+  uint64_t n = 0;
+  std::cout << "Input number to calculate factorial from: " << std::endl;
+  std::cin >> n;
+  std::cout << "Factorial of " << n << " is " << fact(n) << std::endl;
 }
 
-/**
- * @brief Checks wether a module of the suit is active
- *
- * @param state Suit state
- * 
- * @param to_get Module to read
- *
- * @return bool
- */
-bool IsActive(PipGirl_state_t state, PipGirl_states to_get){
-    return (state & static_cast<PipGirl_state_t>(to_get)) != 0;
+void Task2()
+{
+  uint64_t n = 0;
+  std::cout << "Input number to calculate 2^number from: " << std::endl;
+  std::cin >> n;
+  std::cout << "2^" << n << " is " << powered2(n) << std::endl;
 }
 
-/**
- * @brief Checks wether a module of the suit by id is active
- *
- * @param state Suit state
- * 
- * @param id Module id to read
- *
- * @return bool
- */
-bool IsActiveByID(PipGirl_state_t state, int id)
+void Task3()
 {
-    return (SanitateState(state) >> id) & 1;
+  uint64_t n1 = 0, n2 = 0;
+  std::cout << "Input n1 and n2 to calculate 2^n1 + 2^n2: " << std::endl;
+  std::cin >> n1 >> n2;
+  std::cout << "2^" << n1 << "+2^" << n2 << " is " << (powered2(n1) + powered2(n2)) << std::endl;
 }
 
-/**
- * @brief Counts suit's currently active states
- *
- * @param state Suit states
- *
- * @return unsigned int
- */
-unsigned int CountActiveStates(PipGirl_state_t state)
+void Task4()
 {
-           //basically counts 1s
-    return __builtin_popcountll(SanitateState(state));
+  uint64_t n1 = 0, n2 = 0;
+  std::cout << "Input n1 and n2 to calculate 2^n1 - 2^n2: " << std::endl;
+  std::cin >> n1 >> n2;
+  std::cout << "2^" << n1 << "-2^" << n2 << " is " << (powered2(n1) - powered2(n2)) << std::endl;
 }
 
-/**
- * @brief Checks wether marmelade donkeys can detect a guy in a suit with enabled active sates
- *
- * @param state Suit states
- *
- * @return bool
- */
-bool IsDetected(PipGirl_state_t state)
+void Task5()
 {
-    // When Potato mode active, then no modules can work
-    if (IsActive(state,PipGirl_states::PotatoEnergyMode))
-        return true;
-    
-    // The perimeter sweepers WILL see you without invisibility
-    if (!IsActive(state,PipGirl_states::Invisibility)) 
-        return true;
-    
-    // Marmelade donkeys have a watchtower with a sniper
-    // that has a thermal imaging scope
-    if (!IsActive(state,PipGirl_states::IRAbsorbption))
-        return true;
-
-    
-    /*
-     * Because marmelade donkeys dont have ears, you
-     * dont need silence mode
-     * and also bruh you're not a jet to have radar
-     * absorbption
-     */ 
-    return false;
+  uint64_t n = 0;
+  std::cout << "Input number to calculate fibonacci from: " << std::endl;
+  std::cin >> n;
+  std::cout << "Fibonacci of " << n << " is " << fibonacci(n) << std::endl;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char* argv[])
 {
-    PipGirl_state_t suit = 0; // All modules disabled
-    InvertState(suit,0); // Invis enabled
-    InvertState(suit,2); // Infrared absorbption enabled
-    bool active = IsActiveByID(suit,2); // Returns true, because IR absorbption is enabled
-    int state_cnt = CountActiveStates(suit); // Returns 2
-    bool detected = IsDetected(suit); // Returns false
-    InvertState(suit,4); // Enables energy saving mode
-    detected = IsDetected(suit); // Returns true
-
+  if(argc <= 1)
+  {
+    PrintHelp(argv);
     return 0;
+  }
+
+  switch(argv[1][0])
+  {
+    case '1':
+      Task1();
+      break;
+    case '2':
+      Task2();
+      break;
+    case '3':
+      Task3();
+      break;
+    case '4':
+      Task4();
+      break;
+    case '5':
+      Task5();
+      break;
+    default:
+      std::cout << "Unknown usage!" << std::endl;
+      break;
+  }
+  return 0;
 }
