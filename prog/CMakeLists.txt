@@ -6,7 +6,6 @@ project(prog VERSION 0.0.1)
 
 add_executable(prog 
 ./main.cpp
-./LongInt.cpp
 )
 
 set_target_properties(prog PROPERTIES CXX_STANDARD 17)
