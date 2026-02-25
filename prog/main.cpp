@@ -82,6 +82,32 @@ void Block1Task2()
   std::cout << "Replaced . with \"[.]\"" << ReplaceAll(input_ip, ".", "\"[.]\"") << std::endl;
 }
 
+bool IsPalandrome(const std::string& cs) {
+  // We dont need to check the middle letter
+  // Because it has no effect on the result
+  // The middle letter is excluded at the division
+  // of string size by two. For example:
+  // string size = 5
+  // After division we have 2, not including
+  // the middle char
+  for (size_t i = 0; i < cs.size()/2; i++)
+  {
+    if (cs[i]!=cs[cs.size()-i-1])
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
+void Block2Task1()
+{
+  std::string input;
+  std::getline(std::cin,input);
+  std::string nwv = ReplaceAll(input," ","");
+  std::cout << "The sentance \"" << input << "\" " << (IsPalandrome(nwv) ? "is a palandrome" : "is not a palandrome") << std::endl;
+}
+
 int main(int argc, char* argv[])
 {
   // if(argc <= 1)
@@ -90,7 +116,7 @@ int main(int argc, char* argv[])
   //   return 0;
   // }
 
-  Block1Task2();
+  Block2Task1();
   // switch(argv[1][0])
   // {
   //   case '1':
