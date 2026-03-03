@@ -125,7 +125,7 @@ std::vector<int> Block3Function(const std::string& words, const std::vector<char
     {
       if(!std::isalpha(c))
       {
-        std::cout << "Character '" << c << "' will be ignored" << std::endl;
+        //std::cout << "Character '" << c << "' will be ignored" << std::endl;
         continue;
       }
       if(c != to_count)
