@@ -18,7 +18,7 @@ Tasks:
 
 bool ValidateIP(const std::string& input_ip)
 {
-  // Check wether the IP follows a %d.%d.%d.%d template
+  // Check whether the IP follows a %d.%d.%d.%d template
   int dot_count = 0;
   size_t last_dot_pos = 0;
   for(size_t i = 0; i < input_ip.size(); i++)
@@ -151,7 +151,7 @@ void Block3()
     {
       if(!std::isalpha(c))
       {
-        std::cout << "The string should only contain letters char '" << c << "' will be ignored" << std::endl;
+        std::cout << "The string should only contain letters; char '" << c << "' will be ignored" << std::endl;
         continue;
       }
       letters.emplace_back(c);
