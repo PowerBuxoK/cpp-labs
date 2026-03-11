@@ -105,9 +105,12 @@ LongInt operator-(LongInt lhs, const LongInt& rhs)
 
 LongInt operator*(LongInt lhs, const uint64_t& rhs)
 {
-
   lhs *= rhs;
   return lhs;
+}
+
+uint64_t operator%(LongInt lhs, const uint64_t& rhs)
+{
 }
 
 std::ostream& operator<<(std::ostream& os, const LongInt& val)

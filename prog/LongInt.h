@@ -21,6 +21,8 @@ public:
   friend LongInt operator+(LongInt lhs, const LongInt& rhs);
   // In-place subtraction
   LongInt& operator-=(const LongInt& rhs);
+  // In-place subtraction
+  LongInt& operator/=(const LongInt& rhs);
   // Regular subtraction
   friend LongInt operator-(LongInt lhs, const LongInt& rhs);
   // In-place multiplication
