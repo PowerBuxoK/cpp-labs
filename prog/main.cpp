@@ -32,28 +32,42 @@ void func4()
 void func3()
 {
   std::cout << "func3" << std::endl;
-  func4();
+  try
+  {
+    func4();
+  }
+  catch(const int e)
+  {
+    std::cerr << "Int exception" << e << '\n';
+  }
   std::cout << "func3 end" << std::endl;
 }
 
 void func2()
 {
   std::cout << "func2" << std::endl;
-  func3();
+  try
+  {
+    try
+    {
+      func3();
+    }
+    catch(const int e)
+    {
+      std::cerr << "Int exception" << e << '\n';
+    }
+  }
+  catch(const double e)
+  {
+    std::cerr << "Double exception" << std::endl;
+  }
   std::cout << "func2 end" << std::endl;
 }
 
 void func1()
 {
   std::cout << "func1" << std::endl;
-  try
-  {
-    func2();
-  }
-  catch(const double& e)
-  {
-    std::cerr << "Excepted double: " << e << '\n';
-  }
+  func2();
   std::cout << "func1 end" << std::endl;
 }
 
