@@ -1,6 +1,8 @@
 #include "LongInt.h"
 #include <iostream>
 
+// TODO: separate to many files
+
 int signed_division(int a, int b)
 {
   int result;
