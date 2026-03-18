@@ -1,77 +1,9 @@
 #include "LongInt.h"
+#include "task2.h"
+#include "task3.h"
 #include <iostream>
 
 // TODO: separate to many files
-
-int signed_division(int a, int b)
-{
-  int result;
-  asm(
-      "movl %1, %%eax\n\t"   // Move dividend into EAX
-      "cdq\n\t"              // Sign-extend EAX into EDX (EDX:EAX = dividend)
-      "idivl %2\n\t"         // Signed divide by divisor
-      "movl %%eax, %0\n\t"   // Move result from EAX to output variable
-      : "=r"(result)         // Output operands
-      : "r"(a), "r"(b)       // Input operands
-      : "%eax", "%edx", "cc" // Clobbered registers and condition codes (cuz of overflow)
-  );
-  return result;
-}
-
-void func5()
-{
-  double h = 1.0;
-  throw(h);
-}
-
-void func4()
-{
-  std::cout << "func4" << std::endl;
-  func5();
-  std::cout << "func4 end" << std::endl;
-}
-
-void func3()
-{
-  std::cout << "func3" << std::endl;
-  try
-  {
-    func4();
-  }
-  catch(const int e)
-  {
-    std::cerr << "Int exception" << e << '\n';
-  }
-  std::cout << "func3 end" << std::endl;
-}
-
-void func2()
-{
-  std::cout << "func2" << std::endl;
-  try
-  {
-    try
-    {
-      func3();
-    }
-    catch(const int e)
-    {
-      std::cerr << "Int exception" << e << '\n';
-    }
-  }
-  catch(const double e)
-  {
-    std::cerr << "Double exception" << std::endl;
-  }
-  std::cout << "func2 end" << std::endl;
-}
-
-void func1()
-{
-  std::cout << "func1" << std::endl;
-  func2();
-  std::cout << "func1 end" << std::endl;
-}
 
 int main(int argc, char const* argv[])
 {
