@@ -25,6 +25,11 @@ Matrix::~Matrix()
 Matrix::Matrix(const int& x, const int& y, bool do_fill_with_garbage)
     : m_width(x), m_height(y)
 {
+  if(m_width < 1 || m_height < 1)
+  {
+    throw std::invalid_argument("Matrix size is less than 1x1");
+  }
+
   m_values.resize(m_height, std::vector<int>(m_width, 0));
 
   if(do_fill_with_garbage)
