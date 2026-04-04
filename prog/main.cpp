@@ -1,15 +1,19 @@
-#include "Matrix.h"
-#include "SquareMatrix.h"
+#include "task8.h"
 #include <iostream>
-
-// TODO: separate to many files
+#include <string>
 
 int main(int argc, char const* argv[])
 {
-  SquareMatrix mat(3);
-  std::cin >> mat;
-  std::cout << "\n"
-            << mat << "\ndot\n"
-            << mat.det() << std::endl;
+  auto res = task8({
+      { 0,  0 },
+      { 5,  5 },
+      { 10, 4 },
+  });
+
+  for(auto& b : res)
+  {
+    std::cout << b.first << "   " << b.second << std::endl;
+  }
+
   return 0;
 }

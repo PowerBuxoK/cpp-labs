@@ -6,8 +6,14 @@ project(prog VERSION 0.0.1)
 
 add_executable(prog 
 ./main.cpp
-./Matrix.cpp
-./SquareMatrix.cpp
+./task1.cpp
+./task2.cpp
+./task3.cpp
+./task4.cpp
+./task5.cpp
+./task6.cpp
+./task7.cpp
+./task8.cpp
 )
 
 set_target_properties(prog PROPERTIES CXX_STANDARD 17)
