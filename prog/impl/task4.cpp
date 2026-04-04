@@ -15,17 +15,7 @@ int timeToMinutes(const std::string& time)
   return h * 60 + m;
 }
 
-std::string minutesToTime(int mins)
-{
-  char output[8];
-
-  int h = mins / 60;
-  int m = mins % 60;
-  snprintf(output, sizeof(output), "%02d:%02d", h, m);
-  return output;
-}
-
-std::string task4(std::vector<std::string> times)
+int task4(std::vector<std::string> times)
 {
   unsigned int min_delta = UINT_MAX;
   for(size_t i = 0; i < times.size(); i++)
@@ -43,5 +33,5 @@ std::string task4(std::vector<std::string> times)
         min_delta = curdelta;
     }
   }
-  return minutesToTime(min_delta);
+  return min_delta;
 };

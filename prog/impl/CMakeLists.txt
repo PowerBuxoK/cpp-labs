@@ -2,10 +2,8 @@ cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(prog VERSION 0.0.1)
 
-add_executable(prog 
-./main.cpp
+add_library(tasks 
 ./task1.cpp
 ./task2.cpp
 ./task3.cpp
@@ -16,5 +14,10 @@ add_executable(prog
 ./task8.cpp
 )
 
-set_target_properties(prog PROPERTIES CXX_STANDARD 17)
-set_target_properties(prog PROPERTIES CXX_STANDARD_REQUIRED ON)
+
+target_include_directories(tasks PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+set_target_properties(tasks PROPERTIES CXX_STANDARD 17)
+set_target_properties(tasks PROPERTIES CXX_STANDARD_REQUIRED ON)

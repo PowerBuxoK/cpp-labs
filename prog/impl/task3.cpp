@@ -178,8 +178,8 @@ std::string task3(const std::string& equation)
 
   int coef = lhs.coefficent - rhs.coefficent;
   int res  = rhs.constant - lhs.constant;
-  std::cout << "lhs: " << lhs.coefficent << "  " << lhs.constant << std::endl;
-  std::cout << "rhs: " << rhs.coefficent << "  " << rhs.constant << std::endl;
+  // std::cout << "lhs: " << lhs.coefficent << "  " << lhs.constant << std::endl;
+  // std::cout << "rhs: " << rhs.coefficent << "  " << rhs.constant << std::endl;
 
   if(coef == 0)
   {

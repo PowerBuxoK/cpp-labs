@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-std::vector<std::pair<int, int>> task8(std::vector<std::pair<int, int>> bushes)
+std::vector<std::pair<int, int>> task8(const std::vector<std::pair<int, int>> bushes)
 {
   std::vector<std::pair<int, int>> result;
   std::pair<int, int> aabb_min = { INT_MAX, INT_MAX };
