@@ -1,8 +1,7 @@
 all:
 	cmake -B ./build/ -S .
 	cmake --build ./build/
-test:
-	make
-	ctest --test-dir ./build/ctest/
+run: all
+	./build/prog
 clean:
 	rm -rf ./build/
