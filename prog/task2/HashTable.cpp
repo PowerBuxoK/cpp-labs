@@ -1,4 +1,5 @@
 #include "HashTable.h"
+#include <iostream>
 
 int customHash(const std::string& to_hash, int max_size)
 {
@@ -12,7 +13,7 @@ int customHash(const std::string& to_hash, int max_size)
     hash *= v;
   }
 
-  return hash % max_size;
+  return abs(hash) % max_size;
 }
 
 HashTable::HashTable()
@@ -40,7 +41,6 @@ bool HashTable::isEmpty() const
 bool HashTable::add(const std::string& key, double value)
 {
   int index = customHash(key, m_table.size());
-
   if(!m_table[index].occupied)
   {
     m_table[index].key      = key;
