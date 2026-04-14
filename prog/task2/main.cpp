@@ -1,7 +1,7 @@
-#include "task1.h"
+#include "HashTable.h"
 
 int main(int argc, char* argv[])
 {
-  task1();
+  HashTable table(255);
   return 0;
 }
