@@ -20,7 +20,7 @@ private:
 public:
   HashTable();
   HashTable(int cap);
-  ~HashTable();
+  ~HashTable() = default;
 
   bool add(const std::string& key, double value);
   bool remove(const std::string& key);
